@@ -1,6 +1,18 @@
 function Button(props){
+
+    const getStyleName = button => {
+        const className = {
+            "=" : "equals",
+            "x" : "operations",
+            "-" : "operations",
+            "+" : "operations",
+            "/" : "operations",
+        }
+        return className[button]
+    }
+
     return(
-        <button>{props.value}</button>
+        <button className={`${getStyleName(props.value)} button`}>{props.value}</button>
     )
 }
 
