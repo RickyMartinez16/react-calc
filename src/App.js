@@ -1,7 +1,14 @@
 import "./App.css";
+import Wrapper from "./components/Wrapper";
 
 function App() {
-  return <h1>Hello World!</h1>;
+  return(
+    <div>
+      <Wrapper>
+        <h1>App</h1>
+      </Wrapper>
+    </div>
+  )
 }
 
 export default App;
