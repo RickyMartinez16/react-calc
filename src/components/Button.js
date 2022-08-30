@@ -46,26 +46,44 @@ function Button(props){
 
     const signClick = () =>  {
         setCalc({
-            sign: value,
+            sign: props.value,
             res: !calc.res && calc.num ? calc.num : calc.res,
             num: 0
         })
     }
 
     const equalsClick = () => {
-        const math = ( a , b, sign) => {
-            const result = {
-                "+" : (a, b) => a + b,
-                "-" : (a, b) => a - b,
-                "x" : (a, b) => a * b,
-                "/" : (a, b) => a / b,
+        if(calc.res && calc.num){
+            const math = ( a , b, sign) => {
+                const result = {
+                    "+" : (a, b) => a + b,
+                    "-" : (a, b) => a - b,
+                    "x" : (a, b) => a * b,
+                    "/" : (a, b) => a / b,
+                }
+                return result[sign](a, b)
             }
-            result[sign](a, b)
+            setCalc({
+                res: math(calc.res, calc.num, calc.sign),
+                sign: " ",
+                num: 0
+            })
         }
+    }
+
+    const percentClick = () => {
         setCalc({
-            res: math(calc.res, calc.num, calc.sign),
-            sign: " ",
-            num: 0
+            num: (calc.num / 100),
+            res: (calc.res / 100),
+            sign: " "
+        })
+    }
+
+    const invertClick = () => {
+        setCalc({
+            num: calc.num ? calc.num * -1 : 0,
+            res: calc.res ? calc.res * -1 : 0,
+            sign: " "
         })
     }
 
@@ -78,7 +96,9 @@ function Button(props){
             "x" : signClick,
             "-" : signClick,
             "+" : signClick,
-            "=" : equalsClick
+            "=" : equalsClick,
+            "%" : percentClick,
+            "+-" : invertClick
         }
         if(result[props.value]){
             return result[props.value]()
