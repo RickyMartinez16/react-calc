@@ -6,8 +6,8 @@
     box-sizing: border-box;
 }
 
-body{
-    height: 100vh;
+body{ 
+    height: 100vh;  /*viewport height: */
     background: #f4f4f4;
     display: flex;
     align-items: center;
