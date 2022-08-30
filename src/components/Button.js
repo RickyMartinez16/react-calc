@@ -20,14 +20,19 @@ function Button(props){
     const commaClick = () => {
         setCalc({
             ...calc, 
-            num: 16
+            num: !calc.number.toString().includes('.') ? calc.num + props.value : calc.num 
         })
+    }
+
+    const resetClick = () => {
+        setCalc({sign: "", num:0, res: 0})
     }
 
     const handleButtonClick = () => {
         
         const result = {
-            "." : commaClick
+            "." : commaClick,
+            "C" : resetClick,
         }
         return result[props.value]()
     }
