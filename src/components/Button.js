@@ -1,6 +1,10 @@
+import { useContext } from "react"
+import { CalcContext } from "../context/CalcContext"
+
 function Button(props){
 
     const getStyleName = button => {
+        
         const className = {
             "=" : "equals",
             "x" : "operations",
@@ -11,8 +15,25 @@ function Button(props){
         return className[button]
     }
 
+    const { calc, setCalc } = useContext(CalcContext);
+
+    const commaClick = () => {
+        setCalc({
+            ...calc, 
+            num: 16
+        })
+    }
+
+    const handleButtonClick = () => {
+        
+        const result = {
+            "." : commaClick
+        }
+        return result[props.value]()
+    }
+
     return(
-        <button className={`${getStyleName(props.value)} button`}>{props.value}</button>
+        <button onClick={handleButtonClick}className={`${getStyleName(props.value)} button`}>{props.value}</button>
     )
 }
 
