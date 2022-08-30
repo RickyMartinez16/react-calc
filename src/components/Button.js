@@ -25,7 +25,23 @@ function Button(props){
     }
 
     const resetClick = () => {
-        setCalc({sign: "", num:0, res: 0})
+        setCalc({sign: " ", num: 0, res: 0})
+    }
+
+    const handleClickButton = () => {
+        const numberString = props.value.toString()
+
+        let numberValue;
+        if(numberString === "0" && calc.num === 0 ){
+            numberValue = "0"
+        } else {
+            numberValue = Number(calc.num + numberString)
+        }
+
+        setCalc({
+            ...calc,
+            num: numberValue
+        })
     }
 
     const handleButtonClick = () => {
@@ -34,7 +50,11 @@ function Button(props){
             "." : commaClick,
             "C" : resetClick,
         }
-        return result[props.value]()
+        if(result[props.value]){
+            return result[props.value]()
+        } else {
+            return handleClickButton()
+        }
     }
 
     return(
