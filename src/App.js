@@ -13,6 +13,8 @@ const buttonValues = [
   [0, ".", "="]
 ]
 
+//The flat() method creates a new array with all sub-array elements concatenated into it recursively up to the specified depth.
+
 function App() {
   return(
     <CalcProvider>
